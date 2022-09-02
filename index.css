@@ -1,0 +1,26 @@
+/* body {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+    column-gap: 19px;
+    row-gap: 19px;
+} */
+#content {
+    border: 0;
+    transition: 0.5s;
+    /* margin-left: 100px; */
+}
+
+/* .content-list {
+    color: #242424;
+    font-weight: 20;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px;
+} */
+
+font {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
