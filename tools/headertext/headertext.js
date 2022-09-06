@@ -52,11 +52,12 @@ $(document).ready(function() {
     let colorPicker = $('#text-color-picker');
     let customColorPicker = $('#custom-color-picker');
     let c_input = $('#text-color-input');
-
     c_input.on('input', function() {
-        colorPicker.val(c_input.val());
-        customColorPicker.css('background-color', c_input.val());
-        preview_text.css('color', c_input.val());
+        if (c_input.val().length == 7) {
+            colorPicker.val(c_input.val());
+            customColorPicker.css('background-color', c_input.val());
+            preview_text.css('color', c_input.val());
+        }
     });
 
     colorPicker.on('input', function() {
@@ -80,9 +81,11 @@ $(document).ready(function() {
         if (textShadowCheckbox.prop('checked')) {
             shadow_ui.show();
             $('#css-text-shadow').show();
+            $('#css-shadow-br').show();
         } else {
             shadow_ui.hide();
             $('#css-text-shadow').hide();
+            $('#css-shadow-br').hide();
         }
         setShadow(textShadow());
     });
@@ -103,9 +106,11 @@ $(document).ready(function() {
     });
 
     sc_input.on('input', function() {
-        shadowColorPicker.val(sc_input.val());
-        customShadowColorPicker.css('background-color', sc_input.val());
-        setShadow(textShadow());
+        if (sc_input.val().length == 7) {
+            shadowColorPicker.val(sc_input.val());
+            customShadowColorPicker.css('background-color', sc_input.val());
+            setShadow(textShadow());
+        }
     });
     
     s_opacity_input.on('input', function() {
