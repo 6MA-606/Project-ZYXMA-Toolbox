@@ -15,11 +15,11 @@
     <hr style="border: 1px solid #aaaaaa; margin: 5px 5vw px 1vw;">
     <div class="content-feature" style="display: block;">
         <div class="tool-box">
-            <input type="text" oninput="textUpdate()" id="text-input" value="Your text here">
+            <input type="text" id="text-input" placeholder="Your text here" value="Your text here">
             <br>
             <br>
             <label for="font-size-input">Font-size: </label>
-            <input type="range" min="0" max="125" value="50" oninput="textUpdate()" id="font-size-input">
+            <input type="range" min="0" max="125" value="50" id="font-size-input">
             <span id="font-size">50px</span>
             <br>
             <label for="font-families">Font-family:</label>
@@ -38,7 +38,7 @@
             <br>
             <label for="text-color-input">Color: </label>
             <span class="text-color-ui">
-                <input type="text" oninput="textUpdate()" id="text-color-input" value="#000000">
+                <input type="text" id="text-color-input" value="#000000">
                 <label for="text-color-picker">
                     <span id="custom-color-picker"></span>
                 </label>
@@ -48,19 +48,19 @@
             <label for="text-shadow-checkbox">Shadow: </label><input type="checkbox" id="text-shadow-checkbox"
                 unchecked>
             <blockquote id="text-shadow-ui" style="display: none;">
-                <label for="hs-input">x distance: </label><input oninput="textUpdate()" id="hs-input" type="range"
+                <label for="hs-input">x distance: </label><input id="hs-input" type="range"
                     min="-50" max="50" value="0"><span id="hs-value">0px</span>
                 <br>
-                <label for="vs-input">y distance: </label><input oninput="textUpdate()" id="vs-input" type="range"
+                <label for="vs-input">y distance: </label><input id="vs-input" type="range"
                     min="-50" max="50" value="0"><span id="vs-value">0px</span>
                 <br>
-                <label for="blur-input">blur radius: </label><input oninput="textUpdate()" id="blur-input" type="range"
+                <label for="blur-input">blur radius: </label><input id="blur-input" type="range"
                     min="0" max="20" value="0"><span id="blur-value">0px</span>
                 <br>
-                <label for="opacity-input">opacity: </label><input oninput="textUpdate()" id="opacity-input"
+                <label for="opacity-input">opacity: </label><input id="opacity-input"
                     type="range" min="0" max="100" value="100"><span id="opacity-value">100%</span>
                 <br>
-                <label for="shadow-color-input">Shadow color: </label><input oninput="textUpdate()"
+                <label for="shadow-color-input">Shadow color: </label><input
                     id="shadow-color-input" type="text" value="#000000">
                 <label for="shadow-color-picker">
                     <span id="custom-shadow-color-picker"></span>
@@ -104,7 +104,7 @@
             </div>
             <div id="html-output">
                 <code>
-                            <span id="html-span">&lt;span class="header-text"&gt;&lt;/span&gt;</span>
+                            <span id="html-span">&lt;span class="header-text"&gt;Your text here&lt;/span&gt;</span>
                         </code>
             </div>
         </div>
