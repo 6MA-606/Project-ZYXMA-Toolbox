@@ -1,193 +1,182 @@
 function decimalToHex(d, padding) {
-    var hex = Number(d).toString(16);
-    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
-
-    while (hex.length < padding) {
-        hex = "0" + hex;
-    }
-
+    let hex = Number(d).toString(16);
+    padding = typeof (padding) === 'undefined' || padding === null ? padding = 2 : padding;
+    while (hex.length < padding) { hex = '0' + hex; }
     return hex;
 }
 
 function cssCopy() {
-    var copyText = document.getElementById("css-code");
+    let copyText = document.getElementById('css-code');
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
 }
 
-function load() {
-
-    let preview_text = document.getElementById('text');
-    let text_input = document.getElementById('text-input');
-    let html_span = document.getElementById('html-span');
-    text_input.addEventListener('input', () => {
-        html_span.innerHTML = '&lt;span class="header-text"&gt;' + text_input.value + '&lt;/span&gt';
-        preview_text.innerHTML = text_input.value;
+$(document).ready(function() {
+    let preview_text = $('#text');
+    let text_input = $('#text-input');
+    let html_span = $('#html-span');
+    text_input.on('input', function() {
+        html_span.text('<span class="header-text">' + text_input.val() + '</span>');
+        preview_text.text(text_input.val());
     });
 
-
-    let font_size = document.getElementById('font-size');
-    let font_size_input = document.getElementById('font-size-input');
-    font_size_input.addEventListener('input', () => {
-        font_size.innerHTML = font_size_input.value + "px";
-        document.getElementById("css-font-size").innerHTML = "font-size: " + font_size_input.value + "px;<br>";
-        preview_text.style.fontSize = font_size_input.value + "px";
+    let font_size = $('#font-size');
+    let font_size_input = $('#font-size-input');
+    font_size_input.on('input', function() {
+        font_size.text(font_size_input.val() + 'px');
+        $('#css-font-size').text('font-size: ' + font_size_input.val() + 'px;');
+        preview_text.css('font-size', font_size_input.val() + 'px');
     });
 
-    let fontFamily = document.querySelector("#font-family-checkbox");
-    let fontList = document.querySelector("#font-families-list");
-    fontFamily.addEventListener('change', () => {
-        fontList.disabled = fontFamily.checked ? false : true;
-        if (fontList.disabled) {
-            document.getElementById("css-font-family").innerHTML = "";
+    let fontFamily = $('#font-family-checkbox');
+    let fontList = $('#font-families-list');
+    fontFamily.on('change', function() {
+        fontList.prop('disabled', fontFamily.prop('checked') ? false : true);
+        if (fontList.prop('disabled')) {
+            $('#css-font-family').text('');
+            $('#css-font-family').css('margin-left', '0em');
         } else {
-            document.getElementById("css-font-family").innerHTML = "font-family: " + fontList.value + ";<br>";
+            $('#css-font-family').text('font-family: ' + fontList.val() + ';');
+            $('#css-font-family').css('margin-left', '2em');
         }
     });
 
-    fontList.addEventListener('change', () => {
-        if (fontFamily.checked) {
-            document.getElementById("css-font-family").innerHTML = "font-family: " + fontList.value + ";<br>";
-            document.getElementById("text").style.fontFamily = fontList.value;
+    fontList.on('change', function() {
+        if (fontFamily.prop('checked')) {
+            $('#css-font-family').text('font-family: ' + fontList.val() + ';');
+            preview_text.css('font-family', fontList.val());
         }
     });
 
-    let colorPicker = document.querySelector("#text-color-picker");
-    let customColorPicker = document.getElementById('custom-color-picker');
-    let c_input = document.getElementById('text-color-input');
-    
-    c_input.addEventListener('input', () => {
-        colorPicker.value = c_input.value;
-        customColorPicker.style.backgroundColor = c_input.value;
-        preview_text.style.color = c_input.value;
-    });
-    
-    colorPicker.addEventListener('input', (event) => {
-        customColorPicker.style.backgroundColor = event.target.value
-        c_input.value = event.target.value;
-        document.getElementById("css-color").innerHTML = "color: " + c_input.value + ";<br>";
-        preview_text.style.color = c_input.value;
+    let colorPicker = $('#text-color-picker');
+    let customColorPicker = $('#custom-color-picker');
+    let c_input = $('#text-color-input');
+
+    c_input.on('input', function() {
+        colorPicker.val(c_input.val());
+        customColorPicker.css('background-color', c_input.val());
+        preview_text.css('color', c_input.val());
     });
 
-    let textShadow = document.querySelector('#text-shadow-checkbox');
-    let shadowColorPicker = document.querySelector("#shadow-color-picker");
-    let customShadowColorPicker = document.getElementById('custom-shadow-color-picker');
-    let hs_input = document.getElementById("hs-input");
-    let vs_input = document.getElementById("vs-input");
-    let blur_input = document.getElementById("blur-input");
-    let sc_input = document.getElementById("shadow-color-input");
-    let s_opacity_input = document.getElementById('opacity-input');
-    textShadow.addEventListener('change', () => {
-        let s_input = document.getElementById('text-shadow-ui');
-        s_input.style.display = textShadow.checked ? "block" : "none";
-        document.getElementById('css-text-shadow').style.display = textShadow.checked ? "inline" : "none";
-        shadowUpdate();
+    colorPicker.on('input', function() {
+        customColorPicker.css('background-color', colorPicker.val());
+        c_input.val(colorPicker.val());
+        $('#css-color').text('color: ' + c_input.val() + ';');
+        preview_text.css('color', c_input.val());
     });
 
-    hs_input.addEventListener('input', () => {
-        shadowUpdate();
-    });
-    
-    vs_input.addEventListener('input', () => {
-        shadowUpdate();
-    });
-
-    blur_input.addEventListener('input', () => {
-        shadowUpdate();
-    });
-
-    sc_input.addEventListener('input', () => {
-        shadowUpdate();
-    });
-
-    s_opacity_input.addEventListener('input', () => {
-        shadowUpdate();
-    });
-
-    shadowColorPicker.addEventListener('input', (event) => {
-        let s_colorInput = document.getElementById('shadow-color-input');
-        customShadowColorPicker.style.backgroundColor = event.target.value
-        s_colorInput.value = event.target.value;
-        shadowUpdate();
-    });
-
-    function shadowUpdate() {
-        if (textShadow.checked) {
-            let hs_value = hs_input.value;
-            let vs_value = vs_input.value;
-            let blur_value = blur_input.value;
-            let sc_value = sc_input.value;
-            let s_opacity_value = s_opacity_input.value;
-            let hex_opacity_value = decimalToHex(Math.ceil((255 / 100) * s_opacity_value), 2);
-    
-            shadowColorPicker.value = sc_value;
-            customShadowColorPicker.style.backgroundColor = sc_value;
-    
-            document.getElementById("hs-value").innerHTML = hs_value + "px";
-            document.getElementById("vs-value").innerHTML = vs_value + "px";
-            document.getElementById("blur-value").innerHTML = blur_value + "px";
-            document.getElementById("opacity-value").innerHTML = s_opacity_value + "%";
-    
-            document.getElementById("css-text-shadow").innerHTML = "text-shadow: " + sc_value + hex_opacity_value + " " + hs_value + "px " + vs_value + "px " + blur_value + "px;<br>";
-            text.style.textShadow = sc_value + hex_opacity_value + " " + hs_value + "px " + vs_value + "px " + blur_value + "px";
+    let textShadowCheckbox = $('#text-shadow-checkbox');
+    let shadowColorPicker = $('#shadow-color-picker');
+    let customShadowColorPicker = $('#custom-shadow-color-picker');
+    let hs_input = $('#hs-input');
+    let vs_input = $('#vs-input');
+    let blur_input = $('#blur-input');
+    let sc_input = $('#shadow-color-input');
+    let s_opacity_input = $('#opacity-input');
+    let hex_opacity_value = 'ff';
+    let shadow_ui = $('#text-shadow-ui')
+    textShadowCheckbox.on('change', function() {
+        if (textShadowCheckbox.prop('checked')) {
+            shadow_ui.show();
+            $('#css-text-shadow').show();
         } else {
-            document.getElementById("css-text-shadow").innerHTML = "";
-            text.style.textShadow = null;
+            shadow_ui.hide();
+            $('#css-text-shadow').hide();
+        }
+        setShadow(textShadow());
+    });
+
+    hs_input.on('input', function() {
+        $('#hs-value').text(hs_input.val() + 'px');
+        setShadow(textShadow());
+    });
+
+    vs_input.on('input', function() {
+        $('#vs-value').text(vs_input.val() + 'px');
+        setShadow(textShadow());
+    });
+
+    blur_input.on('input', function() {
+        $('#blur-value').text(blur_input.val() + 'px');
+        setShadow(textShadow());
+    });
+
+    sc_input.on('input', function() {
+        shadowColorPicker.val(sc_input.val());
+        customShadowColorPicker.css('background-color', sc_input.val());
+        setShadow(textShadow());
+    });
+    
+    s_opacity_input.on('input', function() {
+        $('#opacity-value').text(s_opacity_input.val() + '%');
+        hex_opacity_value = decimalToHex(Math.ceil((255 / 100) * s_opacity_input.val()), 2);
+        setShadow(textShadow());
+    });
+
+    shadowColorPicker.on('input', function() {
+        customShadowColorPicker.css('background-color', shadowColorPicker.val());
+        sc_input.val(shadowColorPicker.val());
+        setShadow(textShadow());
+    });
+
+    function textShadow() {
+        if (textShadowCheckbox.prop('checked')) {
+            return sc_input.val() + hex_opacity_value + ' ' + hs_input.val() + 'px ' + vs_input.val() + 'px ' + blur_input.val() + 'px';
+        } else {
+            return '';
         }
     }
 
-    let decoration = document.querySelector("#text-decoration-checkbox");
-    let overline = document.querySelector("#overline-checkbox");
-    let underline = document.querySelector("#underline-checkbox");
-    let lineThrough = document.querySelector("#line-through");
-    decoration.addEventListener('change', () => {
-        let d_input = document.getElementById('text-decoration-input');
-        d_input.style.display = decoration.checked ? "inline" : "none";
-        if (!decoration.checked) {
-            document.getElementById("css-text-decoration").innerHTML = "text-decoration: none;<br>";
-            text.style.textDecoration = "none";
+    function setShadow(shadow) {
+        $('#css-text-shadow').text('text-shadow: ' + shadow + ';');
+        preview_text.css('text-shadow', shadow);
+    }
+
+    let decorationCheckbox = $('#text-decoration-checkbox');
+    let decoration_ui = $('#text-decoration-input');
+    let decorationList = $('.decoration-list');
+    let overline = $('#overline-checkbox');
+    let underline = $('#underline-checkbox');
+    let lineThrough = $('#line-through');
+    decorationCheckbox.on('change', function() {
+        if (decorationCheckbox.prop('checked')) {
+            decoration_ui.show();
+        } else {
+            decoration_ui.hide();
+            $('#css-text-decoration').text('text-decoration: none;');
+            preview_text.css('text-decoration', 'none');
         }
-    });
-    
-    overline.addEventListener('change', () => {
-        decorate();
-    });
-    
-    underline.addEventListener('change', () => {
-        decorate();
+        setDecorate();
     });
 
-    lineThrough.addEventListener('change', () => {
-        decorate();
+    decorationList.on('change', function() {
+        setDecorate();
     });
 
-    function decorate() {
-        let dec_style = "";
-        if (underline.checked) {
-            dec_style += overline.checked ? "underline " : "underline";
+    function setDecorate() {
+        let dec_style = '';
+        if (underline.prop('checked')) {
+            dec_style += overline.prop('checked') ? 'underline ' : 'underline';
         }
-        if (overline.checked) {
-            dec_style += "overline";
+        if (overline.prop('checked')) {
+            dec_style += 'overline';
         }
-        if (lineThrough.checked) {
-            dec_style += overline.checked || underline.checked ? " line-through" : "line-through";
+        if (lineThrough.prop('checked')) {
+            dec_style += overline.prop('checked') || underline.prop('checked') ? ' line-through' : 'line-through';
         }
-        if (dec_style == "") {
-              dec_style = "none";
+        if (dec_style == '') {
+              dec_style = 'none';
          }
-        document.getElementById("css-text-decoration").innerHTML = "text-decoration: " + dec_style + ";<br>";
-        text.style.textDecoration = dec_style;
+        $('#css-text-decoration').text('text-decoration: ' + dec_style + ';');
+        preview_text.css('text-decoration', dec_style);
     }
 
-
-    let previewBg = document.querySelector('#preview-bg');
-    let customPreviewBg = document.getElementById('custom-preview-bg');
-    let previewBox = document.getElementById('preview-box');
-    previewBg.addEventListener('input', (event) => {
-        customPreviewBg.style.backgroundColor = event.target.value;
-        previewBox.style.backgroundColor = event.target.value;
+    let previewBg = $('#preview-bg');
+    let customPreviewBg = $('#custom-preview-bg');
+    let previewBox = $('#preview-box');
+    previewBg.on('input', function() {
+        customPreviewBg.css('background-color', previewBg.val());
+        previewBox.css('background-color', previewBg.val());
     });
-}
-
-window.onload = load;
+});
