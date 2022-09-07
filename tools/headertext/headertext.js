@@ -5,12 +5,12 @@ function decimalToHex(d, padding) {
     return hex;
 }
 
-function cssCopy() {
-    let copyText = document.getElementById('css-code');
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
-}
+// function cssCopy() {
+//     let copyText = document.getElementById('css-code');
+//     copyText.select();
+//     copyText.setSelectionRange(0, 99999);
+//     navigator.clipboard.writeText(copyText.value);
+// }
 
 $(document).ready(function() {
     let preview_text = $('#text');
@@ -35,9 +35,11 @@ $(document).ready(function() {
         fontList.prop('disabled', fontFamily.prop('checked') ? false : true);
         if (fontList.prop('disabled')) {
             $('#css-font-family').text('');
+            $('#css-fontFamily-br').hide();
             $('#css-font-family').css('margin-left', '0em');
         } else {
             $('#css-font-family').text('font-family: ' + fontList.val() + ';');
+            $('#css-fontFamily-br').show();
             $('#css-font-family').css('margin-left', '2em');
         }
     });

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRcode generator</title>
+    <link rel="stylesheet" href="qrcode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="http://danml.com/js/download.js"></script>
+    <script src="./qrcode.js"></script>
+</head>
+<body>
+    <span class="content-header">QRcode generator</span>
+    <hr style="border: 1px solid #aaaaaa; margin: 5px 5vw px 1vw;">
+    <div class="option">
+        <input type="text" id="qr-input" placeholder="link or text here" style="width: 50vw">
+    </div>
+    <div class="option">
+        <label for="qr-colorInput">Color: </label>
+        <span class="qr-colorUi" >
+            <input type="text" id="qr-colorInput" value="#000000">
+            <label for="qr-colorPicker">
+                <span id="qr-customColorPicker" style="background-color: #000000"></span>
+            </label>
+            <input type="color" id="qr-colorPicker" value="#000000">
+        </span>
+    </div>
+    <div class="option">
+        <label for="qr-bgcolorInput">Background Color: </label>
+        <span class="qr-bgcolorUi">
+            <input type="text" id="qr-bgcolorInput" value="#ffffff">
+            <label for="qr-bgcolorPicker">
+                <span id="qr-customBgcolorPicker" style="background-color: #ffffff"></span>
+            </label>
+            <input type="color" id="qr-bgcolorPicker" value="#ffffff">
+        </span>
+    </div>
+    <button id="qr-submit" class="success-btn">Generate</button>
+    <a href="../../image/qr-placeholder.png" target="_blank" rel="noopener" id="qr-download" style="display: none"><em class="fa fa-download"></em> Download</a>
+    <br>
+    <img id="qr-image" src="../../image/qr-placeholder.png" alt="QRcode must generate here.">
+    
+    <!-- <form enctype="multipart/form-data" action="http://api.qrserver.com/v1/read-qr-code/" method="POST">
+        <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+        Choose QR code image to read/scan: <input name="file" type="file" />
+        <input type="submit" value="Read QR code" />
+    </form> -->
+</body>
+</html>

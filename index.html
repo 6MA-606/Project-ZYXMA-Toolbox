@@ -7,16 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Generator</title>
     <link rel="stylesheet" href="./index.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="./index.js"></script>
 </head>
 
-<body style="background-color: rgb(240, 240, 240); overflow-x: hidden; height: 100vh;">
+<body style="background-color: #f0f0f0; overflow: hidden; margin: 0;">
 
     <div class="flex-container">
         <div class="sidenav">
-            <span>Test</span>
+            <div class="sidenav-header">ZYXMA-Toolbox</div>
+            <div class="sidenav-list">
+                <div class="sidenav-button">
+                    <span id="list_1">Header Text</span>
+                </div>
+                <div class="sidenav-button">
+                    <span id="list_2">QRcode Generator</span>
+                </div>
+            </div>
         </div>
         <div class="content">
-            <iframe title="headertext" src="./tools/headertext/headertext.html" width="100%" height="150%" id="content" style="height: 1080px;"></iframe>
+            <!-- <iframe title="headertext" src="./tools/headertext/headertext.html" width="100%" id="content" style="height: 1500px;"></iframe> -->
+            <iframe title="QRcode" src="./tools/qrcode/qrcode.html" width="100%" id="content" style="height: 1500px;"></iframe>
         </div>
     </div>
 
