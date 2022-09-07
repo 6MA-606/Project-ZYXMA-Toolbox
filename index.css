@@ -1,26 +1,59 @@
-/* body {
-    display: grid;
-    grid-template-columns: 0fr 1fr;
-    justify-items: stretch;
-    align-items: stretch;
-    column-gap: 19px;
-    row-gap: 19px;
-} */
 #content {
     border: 0;
     transition: 0.5s;
-    /* margin-left: 100px; */
-}
 
-/* .content-list {
-    color: #242424;
-    font-weight: 20;
-    text-align: center;
-    box-sizing: border-box;
-    height: 100%;
-    padding: 10px;
-} */
+}
 
 font {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    height: 98vh;
+}
+
+.sidenav {
+    flex: 15%;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 85%;
+    overflow-y: auto;
+}
+
+.sidenav-header {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #aaaaaa;
+}
+
+.sidenav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidenav-list .sidenav-button {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.sidenav-list .sidenav-button:hover {
+    text-shadow: #00000071 0px 0px 7px;
+}
+
+@media (max-width: 800px) {
+    .sidenav {
+        width: 0px;
+        flex: 0%;
+        display: none;
+    }
 }
